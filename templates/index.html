@@ -1,0 +1,70 @@
+{% set active_page = "Home" %}
+{% extends "base.html" %}
+
+{% block top %}
+    <style>
+        .back {
+            background: url("{{config.background_image}}") no-repeat center;
+            background-size: cover;
+            background-blend-mode: color-burn;
+        {#filter: saturate(.5) opacity(.5);#}
+        }
+
+        .back h2 {
+            font-family: "Zilla Slab", sans-serif;
+            font-weight: 900;
+            font-size: 40pt;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: gray;
+        }
+    </style>
+
+    <div class="jumbotron jumbotron-fluid back" style="padding-bottom: 20px;">
+        <div class="row header p-0  m-5">
+            <div class="p-0 mx-auto text-center text-white col-md-9 col-sm-12"
+                 style="backdrop-filter: blur(1px)">
+                <h2>
+                    {{ config.tagline|safe }}
+                </h2>
+                <h2 class="p-2">
+                    {{ config.date|safe }}
+                </h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-7 col-sm-12">
+            <h4>Welcome to IEEE VIS 2020 - the first Virtual VIS,</h4>
+            <p>we hope you have to chance to interact with each other as close
+                as possible as you would do in a in-person conference. Here are
+                some
+                highlights of what this year has to offer: </p>
+
+            <p>
+                The <b>virtual paper session</b> guides you...
+            </p>
+        </div>
+
+        <div id="presentation-embed"
+             class="col-md-5 col-sm-12 slp embed-responsive embed-responsive-16by9"
+             style="width: 100%;">
+
+            <iframe src="https://slideslive.com/embed/presentation/38926792?url=https%3A%2F%2Ficlr.cc%2Fvirtual_2020%2Findex.html&amp;origin=https%3A%2F%2Ficlr.cc&amp;target_id=presentation-embed&amp;auto_play=&amp;zoom_ratio=&amp;disable_fullscreen=&amp;locale=en&amp;demo=&amp;vertical_enabled=true&amp;vertical_enabled_on_mobile=&amp;vertical_when_width_lte=2000&amp;allow_hidden_controls_when_paused=true&amp;user_uuid=f980d032-0d57-44a6-a113-13e84e0c3877"
+                    width="400" height="225" scrolling="no" frameborder="0"
+                    allowfullscreen="" webkitallowfullscreen=""
+                    mozallowfullscreen=""
+                    sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation allow-storage-access-by-user-activation"
+                    allow="autoplay, fullscreen"
+                    style="margin: 0px auto; display: block;"></iframe>
+        </div>
+
+    </div>
+
+    <!-- Organizers -->
+    {{ components.section("Organizers") }}
+    {{ components.organizergroup(committee) }}
+
+{% endblock %}

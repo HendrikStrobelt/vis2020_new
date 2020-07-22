@@ -1,0 +1,32 @@
+committee:
+#  - role: Developer
+#    name: Alexander Rush
+#    aff: Cornell Tech, Hugging Face
+#    im: https://avatars0.githubusercontent.com/u/35882?s=400&u=8f382f638b31f13a4754656140256241121c5916&v=4
+#    tw: srush_nlp
+  - role: General Chair
+    name: Valerio Pascucci
+    aff: University of Utah
+    im: https://www.sci.utah.edu/images/people/pascucci.jpg
+  - role: General Chair
+    name: Mike Kirby
+    aff: University of Utah
+    im: https://www.cs.utah.edu/~kirby/kirby.jpg
+  - role: Program Chair
+    name: Gautam Chaudhary
+    aff: Alcon
+    im: https://www.wikihow.com/images/thumb/a/a8/Draw-a-Person-Step-2-Version-3.jpg/aid503922-v4-728px-Draw-a-Person-Step-2-Version-3.jpg
+  - role: Finance Chair
+    name: Loretta Auvil
+    aff: University of Illinois at Urbana–Champaign
+    im: https://pbs.twimg.com/profile_images/1130075419/IMG_3121_2_400x400.JPG
+  - role: Finance Chair
+    name: Maria Velez
+    aff: CA Technologies
+    im: https://www.wikihow.com/images/thumb/a/a8/Draw-a-Person-Step-2-Version-3.jpg/aid503922-v4-728px-Draw-a-Person-Step-2-Version-3.jpg
+
+  - role: Archive Chair & Developer
+    name: Hendrik Strobelt
+    aff: MIT-IBM Watson AI Lab
+    tw: hen_str
+    im: https://avatars1.githubusercontent.com/u/950990?s=460&u=fba00c4d7c79fd9e4b83a15394dd1bbe7b7d3df5&v=4

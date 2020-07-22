@@ -1,0 +1,161 @@
+{% set page_title = paper.content.title %}
+{% extends "base.html" %}
+
+{% block head %}
+
+    {{ super() }}
+    <meta name="citation_title" content="{{ paper.content.title }}"/>
+    {% for author in paper.content.authors %}
+        <meta name="citation_author" content="{{ author }}"/>
+    {% endfor %}
+    <meta name="citation_publication_date"
+          content="{{ config.citation_date }}"/>
+    <meta name="citation_conference_title"
+          content="{{ config.tagline|striptags|title }}"/>
+    <meta name="citation_inbook_title"
+          content="{{ config.proceedings_title }}"/>
+    <meta name="citation_abstract" content="{{ paper.content.abstract }}"/>
+    {% for keyword in paper.content.keywords %}
+        <meta name="citation_keywords" content="{{ keyword }}"/>
+    {% endfor %}
+    <meta name="citation_pdf_url"
+          content="{{ paper.content.pdf_url | default("") }}"/>
+
+    <style>
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- Title -->
+    <div class="pp-card m-3" style="">
+        <div class="card-header">
+            <h2 class="card-title main-title text-center" style="">
+                {{ paper.content.title }}
+            </h2>
+            <h3 class="card-subtitle mb-2 text-muted text-center">
+                {% for author in paper.content.authors %}
+                    <a href="papers.html?filter=authors&search={{ author }}"
+                       class="text-muted"
+                    >{{ author }}</a
+                    >{{ "," if not loop.last }}
+                {% endfor %}
+            </h3>
+{#            <p class="card-text text-center">#}
+{#                <span class="">Keywords:</span>#}
+{#                {% for keyword in paper.content.keywords %}#}
+{#                    <a#}
+{#                            href="papers.html?filter=keywords&search={{ keyword }}"#}
+{#                            class="text-secondary text-decoration-none"#}
+{#                    >{{ keyword }}</a#}
+{#                    >{{ "," if not loop.last }}#}
+{#                {% endfor %}#}
+{#            </p>#}
+            <div class="text-center p-3">
+                <a class="card-link" data-toggle="collapse" role="button"
+                   href="#details">
+                    Abstract
+                </a>
+                <a class="card-link" target="_blank" href="/static/images/GLTR_poster.pdf">
+                    PDF Poster
+                </a>
+{#                {% if paper.content.code != blank %}#}
+                    <a href="{{ paper.content.code }}" target="_blank"
+                       class="card-link">
+                        Code
+                    </a>
+{#                {% endif %}#}
+            </div>
+        </div>
+    </div>
+    <div id="details" class="pp-card m-3 collapse">
+        <div class="card-body">
+            <div class="card-text">
+                <div id="abstractExample">
+                    <span class="font-weight-bold">Abstract:</span>
+                    {{ paper.content.abstract }}
+                </div>
+            </div>
+            <p></p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <!-- Chat -->
+        {#{{ components.section("Example Chat") }}#}
+
+        <div class="col-md-8">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="https://player.vimeo.com/video/215907429"
+                        frameborder="0" allow="autoplay; fullscreen"
+                        allowfullscreen></iframe>
+            </div>
+{#            <div role="main" id="pdf_view"></div>#}
+        </div>
+
+        <div class="col-md-4 col-xs-12 p-2">
+            <div id="gitter" class="slp">
+                <center>
+                    <iframe frameborder="0"
+                            src="https://{{ config.chat_server }}/channel/test_vis?layout=embedded"
+                            height="500px" width="100%"></iframe>
+                </center>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div role="main" id="pdf_view"></div>
+        </div>
+
+
+    </div>
+
+
+    {#    <iframe src="https://player.vimeo.com/video/215907429" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>#}
+
+
+    <!-- Slides Live-->
+
+    {#{{ components.section("Example SlidesLive") }}#}
+    {##}
+    {#<div class="col-md-12 col-xs-12 my-auto p-2" >#}
+    {#  <div id="presentation-embed" class="slp my-auto"></div>#}
+    {#  <script src='https://slideslive.com/embed_presentation.js'></script>#}
+    {#  <script>#}
+    {#    embed = new SlidesLiveEmbed('presentation-embed', {#}
+    {#    presentationId: '{{paper.presentation_id | default(config.default_presentation_id)}}',#}
+    {#    autoPlay: false, // change to true to autoplay the embedded presentation#}
+    {#    verticalEnabled: true,#}
+    {#    verticalWhenWidthLte: 500,#}
+    {#    allowHiddenControlsWhenPaused: true,#}
+    {#    hideTitle: true#}
+    {#    });#}
+    {#  </script>#}
+    {#</div>#}
+
+
+    <!-- Chat -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.3.200/build/pdf.min.js"></script>
+    <script src="static/js/pdf_render.js"></script>
+    <script>
+        $(document).ready(() => {
+            // render first page of PDF to div
+            // PDF name can be bound to variable -- e.g. paper.content.poster_link
+            initPDFViewer(
+              "{{paper.poster_pdf | default(config.default_poster_pdf)}}",
+              '#pdf_view');
+        })
+    </script>
+
+
+
+
+
+
+{% endblock %}
